@@ -15,7 +15,10 @@ jobs:
         - name: list files
           run: ls -al
 
+        - name: grand permission to temp.sh
+          run: chmod +x ./temp.sh
+
         - name: execute script
-          run : ./temp.sh
+          run: ./temp.sh
 
         
