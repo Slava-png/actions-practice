@@ -36,6 +36,9 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v4
 
+        - name: List files
+          run: ls -al
+
         - name: Set up Docker Buildx
           uses: docker/setup-buildx-action@v3
         
