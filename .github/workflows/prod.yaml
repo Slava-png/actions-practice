@@ -3,8 +3,13 @@ name: Test Pipeline
 on: 
     push
 
+env:
+    TEMP: delete
+
 jobs:
     check-env:
+        env: 
+            LIBRARY_NAME: cowsay
         runs-on: ubuntu-latest
         steps:
         - name: checkout
@@ -13,10 +18,12 @@ jobs:
         - name: install cowsay
           run: |
             sudo apt update
-            sudo apt install cowsay
+            sudo apt install $LIBRARY_NAME
         
         - name: execute cowsay
-          run: cowsay "Hello, world!" > cowsay.txt
+          env: 
+            FILE: cowsay.txt
+          run: cowsay "Hello, world!" > $FILE
         
         - name: print cowsay.txt
           run: cat cowsay.txt
