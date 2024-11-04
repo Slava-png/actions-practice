@@ -7,13 +7,20 @@ jobs:
     check-env:
         runs-on: ubuntu-latest
         steps:
-        - name: Print
-          run: echo "Hello World"
-
         - name: checkout
           uses: actions/checkout@v4
-
-        - name: List Files
+        
+        - name: install cowsay
           run: |
-            echo "Hi"
-            ls -al
+            sudo apt update
+            sudo apt install cowsay
+        
+        - name: execute cowsay
+          run: cowsay "Hello, world!" > cowsay.txt
+        
+        - name: print cowsay.txt
+          run: cat cowsay.txt
+        
+
+
+        
