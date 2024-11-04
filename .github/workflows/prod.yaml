@@ -12,6 +12,9 @@ jobs:
         - name: checkout
           uses: actions/checkout@v4
         
+        - name: list files
+          run: ls -al
+
         - name: execute script
           run : ./temp.sh
 
