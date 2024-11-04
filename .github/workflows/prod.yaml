@@ -1,0 +1,14 @@
+name: Test Pipeline
+
+on: 
+    push
+
+jobs:
+    check-env:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Print
+          run: echo "Hello World"
+
+        - name: List Files
+          run: ls -al
