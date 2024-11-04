@@ -3,9 +3,6 @@ name: Test Pipeline
 on: 
     push
 
-env:
-    TEMP: delete
-
 jobs:
     check-env:
         env: 
@@ -15,19 +12,7 @@ jobs:
         - name: checkout
           uses: actions/checkout@v4
         
-        - name: install cowsay
-          run: |
-            sudo apt update
-            sudo apt install $LIBRARY_NAME
-        
-        - name: execute cowsay
-          env: 
-            FILE: cowsay.txt
-          run: cowsay "Hello, world!" > $FILE
-        
-        - name: print cowsay.txt
-          run: cat cowsay.txt
-        
-
+        - name: execute script
+          run : ./temp.sh
 
         
