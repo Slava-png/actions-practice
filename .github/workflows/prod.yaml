@@ -12,13 +12,13 @@ jobs:
           uses: actions/checkout@v4
         
         - name: build artifact
-          run: echo "Build finished" > builds/build.txt
+          run: echo "Build finished" > build.txt
         
         - name: upload artifact
           uses: actions/upload-artifact@v4
           with:
             name: build-file
-            path: builds/build.txt
+            path: build.txt
 
     test:
         runs-on: ubuntu-latest
