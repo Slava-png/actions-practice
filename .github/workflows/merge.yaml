@@ -1,0 +1,14 @@
+name: merge workflow
+
+on: 
+    pull_request:
+        types: [opened, synchronize, reopened]
+
+jobs:
+    check-status:
+        runs-on: ubuntu-latest
+        
+        steps:
+        - name: echo "some logic"
+          run: ls -al
+        
