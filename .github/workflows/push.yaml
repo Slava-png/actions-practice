@@ -49,11 +49,16 @@ jobs:
           uses: azure/setup-kubectl@v4
           with:
             version: 'v1.30.0'
+        
+        - uses: azure/k8s-set-context@v4
+          with:
+            method: kubeconfig
+            kubeconfig: ${{ secrets.KUBECONFIG }}
           
         - name: k8s get namespaces
           run: kubectl get ns
 
-    deploy:
+    deploy: 
         runs-on: ubuntu-latest
         needs: [ build, test ]
 
