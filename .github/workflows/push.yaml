@@ -10,6 +10,12 @@ jobs:
         steps:
         - name: Checkout
           uses: actions/checkout@v4
+
+        - name: Load Dependencies
+          uses: actions/cache@v4
+          with:
+            path: index.html
+            key: ${{ runner.os }}-cache-index-${{ hashFiles('index.html') }}
         
         - name: Build artifact
           run: echo "Build finished" > build.txt
@@ -17,6 +23,15 @@ jobs:
     test:
         runs-on: ubuntu-latest
         needs: build
+        services:
+          postgres:
+            image: postgres
+            env:
+              POSTGRES_USER: user
+              POSTGRES_PASSWORD: password
+              POSTGRES_DB: db
+            ports:
+            - 5432:5432
 
         steps:
         - name: Checkout
@@ -27,6 +42,8 @@ jobs:
 
         - name: Run tests
           run: echo "Tests"
+          env:
+            POSTGRES_URL: postgres://user:password@localhost:5432/db
 
     deploy:
         runs-on: ubuntu-latest
