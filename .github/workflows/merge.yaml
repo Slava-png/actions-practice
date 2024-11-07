@@ -9,6 +9,15 @@ jobs:
         runs-on: ubuntu-latest
         
         steps:
+        - name: checkout 
+          uses: actions/checkout@v4
         - name: echo "some logic"
           run: ls -al
+
+        - name: store artifact
+          uses: actions/upload-artifact@v4 
+          with:
+            path: Dockerfile
+            name: used-dockerfile
+            retention-days: 1
         
